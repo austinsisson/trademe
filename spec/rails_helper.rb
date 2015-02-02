@@ -4,8 +4,51 @@ require 'spec_helper'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'capybara/rspec'
-# Add additional requires below this line. Rails is not loaded until this point!
+include Warden::Test::Helpers
 
+module OmniauthHelper
+  def set_omniauth(opts = {})
+    default = {
+      provider: :facebook,
+      uuid:     '1234',
+      facebook: {
+        email:      'testuser@example.com',
+        gender:     'Female',
+        first_name: 'Test',
+        last_name:  'User'
+        }
+      }
+    
+    credentials = default.merge(opts)
+    provider = credentials[:provider]
+    user_hash = credentials[provider]
+  
+    OmniAuth.config.test_mode = true
+    
+    OmniAuth.config.mock_auth[:provider] = {
+      'uid' => credentials[:uuid],
+      'extra' => {
+        'user_hash' => {
+          'email' => user_hash[:email],
+          'first_name' => user_hash[:first_name],
+          'last_name' => user_hash[:last_name],
+          'gender' => user_hash[:gender]
+          }
+        }
+      }
+  end
+  
+  def set_invalid_omniauth(opts = {})
+    credentials = {
+      provider: :facebook,
+      invalid:  :invalid_credentials
+      }.merge(opts)
+    
+    OmniAuth.config.test_mode = true
+    OmniAuth.config.mock_auth[credentials[:provider]] = credentials[:invalid]
+  end
+end
+# Add additional requires below this line. Rails is not loaded until this point!
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
 # run as spec files by default. This means that files in spec/support that end
@@ -51,4 +94,6 @@ RSpec.configure do |config|
   
   # Extend FactoyGirl to RSpec
   config.include FactoryGirl::Syntax::Methods
+  
+  config.include OmniauthHelper
 end

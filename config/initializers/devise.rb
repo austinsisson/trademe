@@ -235,7 +235,7 @@ Devise.setup do |config|
   if Rails.env.production?
     config.omniauth :facebook, ENV['FACEBOOK_ID'], ENV['FACEBOOK_SECRET']
   else
-    config.omniauth :facebook, EVN['FACEBOOK_TEST_ID'], ENV['FACEBOOK_TEST_SECRET']
+    config.omniauth :facebook, ENV['FACEBOOK_TEST_ID'], ENV['FACEBOOK_TEST_SECRET']
   end
 
   # ==> Warden configuration

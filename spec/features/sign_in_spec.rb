@@ -1,7 +1,5 @@
 require 'rails_helper'
 
-include Warden::Test::Helpers
-
 describe 'user sign in' do
   
   describe 'by email' do
@@ -9,18 +7,18 @@ describe 'user sign in' do
       user = create(:user)
       login_as user, scope: :user
       
-      visit user_path(user)
+      visit root_path
       expect(page).to have_content 'My Trades'
     end
   end
   
   describe 'by facebook' do
     it "redirects to the user page" do
-      user = create(:test_user)
-      user.save
-      click_link('sign in with Facebook')
+      visit root_path
+      set_omniauth()
+      click_link('Sign in with Facebook')
       
-      visit user_path(user)
+      visit root_path
       expect(page).to have_content 'My Trades'
     end
   end
