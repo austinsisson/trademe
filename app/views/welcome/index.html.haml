@@ -1,0 +1,6 @@
+%h1 Welcome to TradeMe!
+= link_to 'Sign In', user_session_path, class: 'btn btn-primary'
+= link_to 'Sign Up', user_registration_path, class: 'btn btn-primary'
+= link_to user_omniauth_authorize_path(:facebook), class: 'btn btn-social btn-md btn-facebook' do
+  %i.fa.fa-facebook
+  Sign in with Facebook

@@ -1,34 +1,26 @@
 require 'rails_helper'
 
-describe 'User Sign In' do
+include Warden::Test::Helpers
+
+describe 'user sign in' do
   
-  describe 'successful email sign in' do
+  describe 'by email' do
     it "redirects to the user page" do
       user = create(:user)
-      visit root_path
+      login_as user, scope: :user
       
-      click_link('Sign In')
-      
-      fill_in 'Email', with: user.email
-      fill_in 'Password', with: user.password
-      
-      within 'form' do
-        click_button 'Sign In'
-      end
-      
-      expect(current_path).to eq user_path
+      visit user_path(user)
       expect(page).to have_content 'My Trades'
     end
   end
   
-  describe 'successful facebook sign in' do
+  describe 'by facebook' do
     it "redirects to the user page" do
-      user = create(:user)
-      visit root_path
-      
+      user = create(:test_user)
+      user.save
       click_link('sign in with Facebook')
       
-      expect(current_path).to eq user_path
+      visit user_path(user)
       expect(page).to have_content 'My Trades'
     end
   end

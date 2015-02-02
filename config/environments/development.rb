@@ -37,4 +37,7 @@ Rails.application.configure do
   
   # Defines default url option 
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  
+  # Enables better_errors on Nitrous
+  #BetterErrors::Middleware.allow_ip! "0.0.0.0/0"
 end
