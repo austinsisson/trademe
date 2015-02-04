@@ -1,6 +1,53 @@
-%h1 Welcome to TradeMe!
-= link_to 'Sign In', user_session_path, class: 'btn btn-primary'
-= link_to 'Sign Up', user_registration_path, class: 'btn btn-primary'
-= link_to user_omniauth_authorize_path(:facebook), class: 'btn btn-social btn-md btn-facebook' do
-  %i.fa.fa-facebook
-  Sign in with Facebook
+#headerwrap
+  .container
+    .row
+      .col-lg-6.text-left
+        %h1.title
+          TradeMe
+      .col-lg-6.text-center
+        %h1
+          Connect With Co-workers.
+          %br/
+          Trade Your Shift.
+          %br/
+          No Hassles.
+        = link_to 'Sign Up Today!', user_registration_path, class: 'btn btn-warning btn-lg'
+#features
+.container
+  .row.mt.centered
+    .col-lg-6.col-lg-offset-3
+      %h1
+        Trading Shifts
+        %br>/
+        Made Easy
+      %h3 Many businesses lack an internal scheduling system that handles shift trades. TradeMe provides an easy-to-use solution for co-workers to trade their shifts.
+  .row.mt.centered
+    .col-lg-4
+      %img{:alt => "", :src => "assets/img/ser01.png", :width => "180"}/
+      %h4 Cross-Platform Compatibility
+      %p TradeMe was built from the ground up to be a full-featured webapp that works on all major web browsers, as well as iOS, Android, and Windows Phone. 
+    .col-lg-4
+      %img{:alt => "", :src => "assets/img/ser02.png", :width => "180"}/
+      %h4 One Site, One Solution
+      %p No more private Facebook groups or annoying group texts. Anyone with access to a web browser can login, submit, view, and accept shift requests. Users can also opt-in for email alerts to make it even easier to keep track of trades.
+    .col-lg-4
+      %img{:alt => "", :src => "assets/img/ser03.png", :width => "180"}/
+      %h4 Totally Free
+      %p TradeMe is 100% free to use. Additional paid features may be added over time, but the core site will always be completely free.
+.container
+  %hr/
+#about
+.container
+  .row.mt.centered
+    .col-lg-6.col-lg-offset-3
+      %h1
+        About TradeMe
+      %h3 TradeMe was designed and built by Austin Sisson as a final project for a full-stack web development bootcamp.
+  .row.mt.centered
+    .col-lg-12
+      %img.img-circle{:alt => "", :src => "assets/img/pic1.jpg", :width => "140"}/
+      %h4 Austin Sisson
+      %p Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever.
+.container
+  %hr/
+  %p.centered Built using a modified theme originally created by BlackTie.co - Attribution License 3.0 - 2013

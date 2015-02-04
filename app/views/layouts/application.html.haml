@@ -4,12 +4,42 @@
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title Trademe
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = stylesheet_link_tag    'application', "http://fonts.googleapis.com/css?family=Lato:300,400,900"
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
+    
   %body
-    = flash.each do |key, value|
-      .alert{class: "alert-#{key}"}
-        %button.close {data: {dismiss: 'alert'}} x
-        %strong
-          = value
+  
+    .flash
+      - if flash[:notice]
+        .alert.alert-success
+          = flash[:notice]
+      - elsif flash[:error]
+        .alert.alert-danger
+          = flash[:error]
+      - elsif flash[:alert]
+        .alert.alert-warning
+          = flash[:alert]
+        
+    .navbar.navbar-default.navbar-fixed-top
+      .container
+        .navbar-header
+          %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          = link_to "TradeMe", root_path, class: 'navbar-brand'
+        .navbar-collapse.collapse
+          %ul.nav.navbar-nav.navbar-right
+            - if current_user.present?
+              %li
+                = link_to "Log Out", destroy_user_session_path, method: :delete
+            - else
+              %li
+                = link_to 'Features', '/#features'
+              %li
+                = link_to 'About', '/#about'
+              %li
+                = link_to 'Already registered?', user_session_path
+
     = yield
