@@ -6,19 +6,7 @@ require 'rspec/rails'
 require 'capybara/rspec'
 include Warden::Test::Helpers
 
-def test_omniauth
-  OmniAuth.config.test_mode = true
-  OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new({
-    provider: 'facebook',
-    uid:     '1234',
-    info: {
-      email:      'testuser@example.com',
-      gender:     'Female',
-      first_name: 'Test',
-      last_name:  'User'
-    }
-  })
-end
+Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
 ActiveRecord::Migration.maintain_test_schema!
 
@@ -48,4 +36,5 @@ RSpec.configure do |config|
   
   # Extend FactoyGirl to RSpec
   config.include FactoryGirl::Syntax::Methods
+  config.include OmniauthHelper, type: :feature
 end

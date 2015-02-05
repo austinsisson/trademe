@@ -14,7 +14,7 @@ describe 'user sign in' do
   
   describe 'by facebook' do
     it "redirects to the user page" do
-      visit root_path
+      visit user_session_path
       test_omniauth
       click_link('Sign in with Facebook')
       
