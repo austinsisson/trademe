@@ -17,10 +17,10 @@
           %br/
           Find Your Workplace
         = form_tag workplaces_path, method: :get do
-          = text_field_tag 'Workplace', params[:name], placeholder: 'Workplace'
+          = text_field_tag 'name', params[:name], placeholder: 'Workplace'
           .p
             in
-          = text_field_tag 'City', params[:city], placeholder: 'City'
+          = text_field_tag 'city', params[:city], placeholder: 'City'
           = submit_tag 'Search', class: 'btn btn-default'
          
 #features

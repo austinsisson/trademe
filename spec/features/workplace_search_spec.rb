@@ -9,9 +9,9 @@ describe 'workplace search' do
       fill_in 'City', with: 'Indianapolis'
       click_button 'Search'
       
-      expect(page).to have_content '4625 East 96th Street'
-      expect(page).to have_content '3340 West 86th Street'
-      expect(page).to have_content '1002 Broad Ripple Avenue'
+      expect(current_path).to have_text '4625 East 96th Street'
+      expect(current_path).to have_text '3340 West 86th Street'
+      expect(current_path).to have_text '1002 Broad Ripple Avenue'
     end
     
     it 'prompts non-users to sign up' do

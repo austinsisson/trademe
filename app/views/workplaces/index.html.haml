@@ -1,5 +1,8 @@
 - @workplaces.each do |workplace|
   = workplace.name
-  = workplace.address
+  %br
+    = workplace.address
   = "#{workplace.city + ', ' + workplace.state}"
+  %br
+  %br
   
