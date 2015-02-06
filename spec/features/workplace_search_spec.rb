@@ -6,7 +6,7 @@ describe 'workplace search' do
     it 'displays all listed workplaces' do
       visit root_path
       fill_in 'Workplace', with: 'Chipotle'
-      fill_in 'City, State', with: 'Indianapolis, IN'
+      fill_in 'City', with: 'Indianapolis'
       click_button 'Search'
       
       expect(page).to have_content '4625 East 96th Street'

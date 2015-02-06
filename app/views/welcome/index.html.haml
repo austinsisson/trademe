@@ -4,14 +4,25 @@
       .col-lg-6.text-left
         %h1.title
           TradeMe
-      .col-lg-6.text-center
-        %h1
+        %h2
           Connect With Co-workers.
           %br/
           Trade Your Shift.
           %br/
           No Hassles.
         = link_to 'Sign Up Today!', user_registration_path, class: 'btn btn-warning btn-lg'
+      .col-lg-6
+        %h2
+          Get Started Today!
+          %br/
+          Find Your Workplace
+        = form_tag workplaces_path, method: :get do
+          = text_field_tag 'Workplace', params[:name], placeholder: 'Workplace'
+          .p
+            in
+          = text_field_tag 'City', params[:city], placeholder: 'City'
+          = submit_tag 'Search', class: 'btn btn-default'
+         
 #features
 .container
   .row.mt.centered
@@ -50,4 +61,4 @@
       %p Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever.
 .container
   %hr/
-  %p.centered Built using a modified theme originally created by BlackTie.co - Attribution License 3.0 - 2013
+  %p.attribution.centered Built using a modified theme originally created by BlackTie.co - Attribution License 3.0 - 2013

@@ -125,10 +125,9 @@ a:after {
 
 /* HeaderWrap */
 #headerwrap {
-	/* background: url(../img/bg01.jpg) no-repeat center top; */
 	background-color: #3498db;
 	margin-top: -20px;
-	padding-top:200px;
+	padding-top:100px;
 	background-attachment: relative;
 	background-position: center center;
 	min-height: 650px;
@@ -149,7 +148,15 @@ a:after {
 	margin-top: 60px;
 	margin-bottom: 15px;
 	color: white;
-	font-size: 45px;
+	font-size: 75px;
 	font-weight: 300;
 	letter-spacing: 1px;
+}
+
+#headerwrap h2 {
+  color: white;
+}
+
+.attribution {
+  font-size: 10px;
 }

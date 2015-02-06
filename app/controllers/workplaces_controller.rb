@@ -1,6 +1,7 @@
 class WorkplacesController < ApplicationController
   
   def index
+    @workplaces = Workplace.where('name = ? and city = ?', params[:name], params[:city])
   end
   
   def show
@@ -13,5 +14,11 @@ class WorkplacesController < ApplicationController
   end
   
   def update
+  end
+  
+  private
+  
+  def workplace_params
+    params.require(:workplace).permit(:name, :address, :city, :state)
   end
 end
