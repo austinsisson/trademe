@@ -1,7 +1,7 @@
 class WorkplacesController < ApplicationController
   
   def index
-    @workplaces = Workplace.where('name = :name and city = :city', name: (params[:name]), city: (params[:city]))
+    @workplaces = Workplace.where('name = ? and city = ?', params[:name], params[:city])
   end
   
   def show

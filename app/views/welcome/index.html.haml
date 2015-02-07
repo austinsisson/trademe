@@ -11,17 +11,19 @@
           %br/
           No Hassles.
         = link_to 'Sign Up Today!', user_registration_path, class: 'btn btn-warning btn-lg'
-      .col-lg-6
+      .col-lg-6.text-center
         %h2
           Get Started Today!
           %br/
           Find Your Workplace
-        = form_tag workplaces_path, method: :get do
-          = text_field_tag 'name', params[:name], placeholder: 'Workplace'
-          .p
-            in
-          = text_field_tag 'city', params[:city], placeholder: 'City'
-          = submit_tag 'Search', class: 'btn btn-default'
+        = form_tag workplaces_path, method: :get, class: 'form-inline' do
+          .form-group
+            = text_field_tag 'name', params[:name], placeholder: 'Workplace'
+            = 'in'
+            = text_field_tag 'city', params[:city], placeholder: 'City'
+            %br
+            %br
+            = submit_tag 'Search', class: 'btn btn-default'
          
 #features
 .container
