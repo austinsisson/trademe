@@ -32,8 +32,8 @@ group :production do
 end
 
 group :test do
+  gem 'database_cleaner'
   gem 'faker'
-  gem 'launchy'
 end
 
 group :test, :development do

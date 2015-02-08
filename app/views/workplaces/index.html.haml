@@ -6,3 +6,10 @@
   %br
   %br
   
+.col-md-12
+  - unless current_user.present?
+    = link_to 'Sign Up Today!', new_user_registration_path, class: 'btn btn-warning btn-lg'
+  %h2 
+    Don't see your workplace?
+  = link_to 'Add it!', new_workplace_path, class: 'btn btn-default'
+    

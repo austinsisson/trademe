@@ -36,7 +36,6 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
-    addressable (2.3.6)
     arel (6.0.0)
     autoprefixer-rails (5.1.1)
       execjs
@@ -67,6 +66,7 @@ GEM
       execjs
     coffee-script-source (1.9.0)
     daemon_controller (1.2.0)
+    database_cleaner (1.4.0)
     devise (3.4.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -120,8 +120,6 @@ GEM
       turbolinks
     json (1.8.2)
     jwt (1.2.1)
-    launchy (2.4.3)
-      addressable (~> 2.3)
     loofah (2.0.1)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -253,6 +251,7 @@ DEPENDENCIES
   bootswatch-rails
   capybara
   coffee-rails
+  database_cleaner
   devise
   factory_girl_rails
   faker
@@ -263,7 +262,6 @@ DEPENDENCIES
   jbuilder
   jquery-rails
   jquery-turbolinks
-  launchy
   omniauth-facebook
   passenger
   pundit

@@ -1,12 +1,14 @@
 class WorkplacesController < ApplicationController
   
+  before_action :authenticate_user!, except: [:index]
+  
   def index
     @workplaces = Workplace.where('name = ? and city = ?', params[:name], params[:city])
   end
   
   def show
   end
-  
+
   def create
   end
   

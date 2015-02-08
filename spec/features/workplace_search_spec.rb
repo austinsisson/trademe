@@ -3,13 +3,7 @@ require 'rails_helper'
 describe 'workplace search' do
   
   before do
-    test1 = Workplace.new(
-      name: 'Chipotle',
-      city: 'Indianapolis',
-      state: 'Indiana',
-      address: '4625 East 96th Street'
-      )
-    test1.save
+    create(:workplace)
   end
   
   describe 'by name and location' do
@@ -20,22 +14,26 @@ describe 'workplace search' do
       click_button 'Search'
 
       expect(page).to have_content '4625 East 96th Street'
-      #expect(page).to have_text '3340 West 86th Street'
-      #expect(page).to have_text '1002 Broad Ripple Avenue'
     end
     
-    it 'prompts non-users to sign up' do
-      unless current_user.present?
-        visit search_path
-        expect(page).to have_button 'Sign Up Today!'
+    it 'prompts guests to sign up' do
+      visit workplaces_path
+      expect(page).to have_link 'Sign Up Today!'
       
-        click_button 'Sign Up Today!'
-        expect(page).to have_content 'Sign Up'
-      end
+      click_link 'Sign Up Today!'
+      expect(page).to have_content 'Sign up'
+    end
+  
+    it 'does not prompt users to sign up' do
+      user = create(:user)
+      login_as user, scope: :user
+      visit workplaces_path
+      
+      expect(page).not_to have_button 'Sign Up Today!'
     end
     
     it 'prompts anyone to add a new workplace' do
-      visit search_path
+      visit workplaces_path
       expect(page).to have_link "Don't see your workplace? Add it!"
       
       click_link "Don't see your workplace? Add it!"
