@@ -34,15 +34,24 @@ describe 'workplace search' do
     
     it 'prompts anyone to add a new workplace' do
       visit workplaces_path
-      expect(page).to have_link "Don't see your workplace? Add it!"
+      expect(page).to have_link "Add it!"
+    end
+    
+    it 'allows users to add a new workplace' do
+      visit workplaces_path
+      user = create(:user)
+      login_as user, scope: :user
       
-      click_link "Don't see your workplace? Add it!"
-      if current_user.present?
-        expect(page).to have_content "Add a new workplace"
-      else
-        expect(page).to have_content "Hey, you've gotta be signed in to do that!"
-        expect(page).to have_content "Sign Up"
-      end
+      click_link "Add it!"
+      expect(page).to have_content "Add a new workplace"
+    end
+    
+    it 'redirects guests that try to add a workplace' do
+      visit workplaces_path
+      click_link "Add it!"
+      
+      expect(page).to have_content "You need to sign in or sign up before continuing."
+      expect(page).to have_content "Sign up"
     end
   end
 end
