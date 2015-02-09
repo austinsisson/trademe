@@ -4,7 +4,10 @@
     = workplace.address
   = "#{workplace.city + ', ' + workplace.state}"
   %br
+  = link_to 'Join this workplace', workplace_path(workplace), class: 'btn btn-primary'
   %br
+  %br
+  
   
 .col-md-12
   - unless current_user.present?

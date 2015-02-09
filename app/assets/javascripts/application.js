@@ -16,6 +16,6 @@
 //= require_tree .
 
 $(document).ready(function() {
-  $('.flash').delay(4000).slideUp();
+  $('.flash').delay(5000).slideUp();
 });
 

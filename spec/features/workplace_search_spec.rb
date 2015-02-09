@@ -53,6 +53,31 @@ describe 'workplace search' do
       expect(page).to have_content "You need to sign in or sign up before continuing."
       expect(page).to have_content "Sign up"
     end
+    
+    it 'lets users join a workplace' do
+      user = create(:user)
+      login_as user, scope: :user
+      visit root_path
+      fill_in 'Workplace', with: 'Chipotle'
+      fill_in 'City', with: 'Indianapolis'
+      click_button 'Search'
+      
+      click_link 'Join this workplace'
+    
+      expect(page).to have_content "You can access the workplace site after a co-worker has approved you."
+    end
+    
+    it 'does not let guests join a workplace' do
+      visit root_path
+      fill_in 'Workplace', with: 'Chipotle'
+      fill_in 'City', with: 'Indianapolis'
+      click_button 'Search'
+      
+      click_link 'Join this workplace'
+      
+      expect(page).to have_content "You need to sign in or sign up before continuing."
+      expect(page).to have_content "Sign up"
+    end
   end
 end
       

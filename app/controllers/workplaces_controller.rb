@@ -18,9 +18,11 @@ class WorkplacesController < ApplicationController
     @workplace = Workplace.create(workplace_params)
     
     if @workplace.save
-      redirect_to workplace_path(@workplace), notice: 'Workplace added!'
+      redirect_to workplace_path(@workplace)
+      flash[:notice] = 'Workplace added!'
     else
-      redirect_to new_workplace_path, error: 'Oops! An error occurred, try again!'
+      redirect_to new_workplace_path
+      flash[:error] = @workplace.errors[:name].first
     end
   end
   
