@@ -11,7 +11,7 @@ describe 'user sign in' do
     
     it 'prompts users without workplaces to find one' do
       visit root_path
-      expect(page).to have_content 'Find your workplace!'
+      expect(page).to have_content "Let's find your workplace."
     end
     
     it "redirects to the user page" do
@@ -29,7 +29,7 @@ describe 'user sign in' do
       click_link('Sign in with Facebook')
       
       visit root_path
-      expect(page).to have_content 'Find your workplace!'
+      expect(page).to have_content "Let's find your workplace."
     end
   end
 end

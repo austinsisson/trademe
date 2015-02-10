@@ -14,8 +14,10 @@ gem 'jbuilder'
 gem 'jquery-rails'
 gem 'jquery-turbolinks'
 gem 'omniauth-facebook'
+gem 'pg'
 gem 'pundit'
 gem 'sass-rails'
+gem 'textacular'
 gem 'turbolinks'
 gem 'uglifier'
 
@@ -23,7 +25,6 @@ group :development do
   gem 'better_errors'
   gem 'html2haml'
   gem 'spring'
-  gem 'sqlite3'
 end
 
 group :production do

@@ -3,7 +3,7 @@ class WorkplacesController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   
   def index
-    @workplaces = Workplace.where('name = ? and city = ?', params[:name], params[:city])
+    @workplaces = Workplace.fuzzy_search(name: params[:name], city: params[:city])
   end
   
   def show
