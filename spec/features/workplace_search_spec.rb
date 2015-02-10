@@ -16,20 +16,13 @@ describe 'workplace search' do
       expect(page).to have_content '4625 East 96th Street'
     end
     
-    it 'prompts guests to sign up' do
-      visit workplaces_path
-      expect(page).to have_link 'Sign Up Today!'
+    it 'informs the user if no results are found' do
+      visit root_path
+      fill_in 'Workplace', with: 'Nothing'
+      fill_in 'City', with: 'Nowhere'
+      click_button 'Search'
       
-      click_link 'Sign Up Today!'
-      expect(page).to have_content 'Sign up'
-    end
-  
-    it 'does not prompt users to sign up' do
-      user = create(:user)
-      login_as user, scope: :user
-      visit workplaces_path
-      
-      expect(page).not_to have_button 'Sign Up Today!'
+      expect(page).to have_content 'No workplaces match your search'
     end
     
     it 'prompts anyone to add a new workplace' do
@@ -62,7 +55,7 @@ describe 'workplace search' do
       fill_in 'City', with: 'Indianapolis'
       click_button 'Search'
       
-      click_link 'Join this workplace'
+      click_link 'Join it!'
     
       expect(page).to have_content "You can access the workplace site after a co-worker has approved you."
     end
@@ -73,7 +66,7 @@ describe 'workplace search' do
       fill_in 'City', with: 'Indianapolis'
       click_button 'Search'
       
-      click_link 'Join this workplace'
+      click_link 'Join it!'
       
       expect(page).to have_content "You need to sign in or sign up before continuing."
       expect(page).to have_content "Sign up"

@@ -1,22 +1,5 @@
-%h2 Add a new workplace
-
-= form_for @workplace do |f|
-  .field
-    = f.label :name
+.col-md-12.text-center
+  %h2 
+    Add a new workplace
     %br
-    = f.text_field :name
-  .field
-    = f.label :address
-    %br
-    = f.text_field :address
-  .field
-    = f.label :city
-    %br
-    = f.text_field :city
-  .field
-    = f.label :state
-    %br
-    = f.select :state, options_for_select(us_states)
-  .field
-    %br
-    = f.submit "Add this workplace", class: 'btn btn-default'
+  = render 'new_workplace'

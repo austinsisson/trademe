@@ -16,14 +16,7 @@
           Get Started Today!
           %br/
           Find Your Workplace
-        = form_tag workplaces_path, method: :get, class: 'form-inline' do
-          .form-group
-            = text_field_tag 'name', params[:name], placeholder: 'Workplace'
-            = 'in'
-            = text_field_tag 'city', params[:city], placeholder: 'City'
-            %br
-            %br
-            = submit_tag 'Search', class: 'btn btn-default'
+        = render 'workplaces/search'
          
 #features
 .container

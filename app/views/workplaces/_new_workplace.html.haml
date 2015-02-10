@@ -1,0 +1,20 @@
+= form_for @workplace do |f|
+  .field
+    = f.label :name
+    %br
+    = f.text_field :name
+  .field
+    = f.label :address
+    %br
+    = f.text_field :address
+  .field
+    = f.label :city
+    %br
+    = f.text_field :city
+  .field
+    = f.label :state
+    %br
+    = f.select :state, options_for_select(us_states)
+  .field
+    %br
+    = f.submit "Add this workplace", class: 'btn btn-default'

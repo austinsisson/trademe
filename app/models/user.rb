@@ -3,7 +3,8 @@ class User < ActiveRecord::Base
   :recoverable, :rememberable, :trackable, :validatable, :confirmable,
   :omniauthable, omniauth_providers: [:facebook]
   
-  has_many :workplaces
+  has_many :user_workplaces
+  has_many :workplaces, through: :user_workplaces
   has_many :shifts, through: :workplaces
   
   def self.from_omniauth(auth)

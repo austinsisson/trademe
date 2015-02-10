@@ -1,18 +1,32 @@
-- @workplaces.each do |workplace|
-  = workplace.name
-  %br
-    = workplace.address
-  = "#{workplace.city + ', ' + workplace.state}"
-  %br
-  = link_to 'Join this workplace', workplace_path(workplace), class: 'btn btn-primary'
-  %br
-  %br
-  
-  
-.col-md-12
-  - unless current_user.present?
-    = link_to 'Sign Up Today!', new_user_registration_path, class: 'btn btn-warning btn-lg'
-  %h2 
+.results
+.col-md-6.text-center
+  - @workplaces.each do |workplace|
+    %h2
+      = workplace.name
+      %br
+        = workplace.address
+      = "#{workplace.city + ', ' + workplace.state}"
+    %br
+    = link_to 'Join it!', workplace_path(workplace), class: 'btn btn-default btn-lg'
+    %br
+    %br
+  - if @workplaces.none?
+    %h2.text-center No workplaces match your search. 
+    %br
+.col-md-6.text-center  
+  %h2
     Don't see your workplace?
-  = link_to 'Add it!', new_workplace_path, class: 'btn btn-default'
+    %br
+    %br
+    = link_to 'Add it!', new_workplace_path, class: 'btn btn-default btn-lg'
+    %br
+    %br
+    Or
+  %h3
+    Look again
+    %br
+    %br
+    = render 'search'
+
+
     
