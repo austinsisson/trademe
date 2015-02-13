@@ -6,7 +6,7 @@ require 'rspec/rails'
 require 'capybara/rspec'
 include Warden::Test::Helpers
 
-Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
+Dir[Rails.root.join("spec/support/*.rb")].each { |f| require f }
 
 ActiveRecord::Migration.maintain_test_schema!
 
@@ -37,4 +37,5 @@ RSpec.configure do |config|
   # Extend FactoyGirl to RSpec
   config.include FactoryGirl::Syntax::Methods
   config.include OmniauthHelper, type: :feature
+  config.include UsersHelper, type: :feature
 end

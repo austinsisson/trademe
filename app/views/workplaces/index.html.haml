@@ -7,7 +7,7 @@
         = workplace.address
       = "#{workplace.city + ', ' + workplace.state}"
     %br
-    = link_to 'Join it!', workplace_path(workplace), class: 'btn btn-default btn-lg'
+    = link_to 'Join it!', user_workplaces_path(workplace_id: workplace.id), method: :post, class: 'btn btn-default btn-lg'
     %br
     %br
   - if @workplaces.none?

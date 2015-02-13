@@ -18,7 +18,7 @@ describe 'user sign in' do
       workplace = create(:workplace)
       create(:user_workplace, user: @user, workplace: workplace)
       visit root_path
-      expect(page).to have_content 'My Trades'
+      expect(page).to have_content "#{workplace.name}"
     end
   end
   

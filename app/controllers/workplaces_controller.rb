@@ -18,6 +18,7 @@ class WorkplacesController < ApplicationController
     @workplace = Workplace.create(workplace_params)
     
     if @workplace.save
+      Userworkplace.create(user: current_user, workplace: @workplace)
       redirect_to workplace_path(@workplace)
       flash[:notice] = 'Workplace added!'
     else
@@ -31,7 +32,7 @@ class WorkplacesController < ApplicationController
   
   def update
   end
-  
+    
   private
   
   def workplace_params

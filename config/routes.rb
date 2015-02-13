@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   
   resources :users, only: [:show, :update]
   resources :workplaces
+  resources :user_workplaces, only: [:create, :update, :destroy]
   
   post 'workplaces' => 'workplaces#create'
   
