@@ -4,4 +4,7 @@
 = "#{@workplace.city + ', ' + @workplace.state}"
 %br
 %br
+
+- if @user.role == 'moderator'
+  = @
   
