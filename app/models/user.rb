@@ -7,6 +7,14 @@ class User < ActiveRecord::Base
   has_many :workplaces, through: :user_workplaces
   has_many :shifts, through: :workplaces
   
+  def moderator?
+    role == 'moderator'
+  end
+  
+  def regular?
+    role == 'regular'
+  end
+  
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.id).first_or_create do |user|
       user.email       = auth.info.email

@@ -8,6 +8,8 @@ class WorkplacesController < ApplicationController
   
   def show
     @workplace = Workplace.find(params[:id])
+    @user = current_user.user_workplaces.where(workplace: @workplace).first
+    @pending_users = UserWorkplace.where(workplace: @workplace, pending: true)
   end
   
   def new
@@ -19,6 +21,7 @@ class WorkplacesController < ApplicationController
     
     if @workplace.save
       UserWorkplace.create(user: current_user, workplace: @workplace, pending: false)
+      current_user.update(role: 'moderator')
       redirect_to workplace_path(@workplace)
       flash[:notice] = 'Workplace added!'
     else

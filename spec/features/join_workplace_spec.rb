@@ -36,9 +36,9 @@ describe 'join workplace' do
       fill_in 'City', with: 'Indianapolis'
       select 'Indiana', from: 'State'
       click_on 'Add this workplace'
-      create(:user_workplace, user: @user, workplace: @workplace, pending: false)
       
-      expect(page).to have content "Approve User"
+      expect(@user.role).to eq 'moderator'
+      expect(page).to have_content "Approve New Co-Workers"
     end
   end
 end

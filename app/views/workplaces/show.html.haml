@@ -1,10 +1,19 @@
-= @workplace.name
-%br
-  = @workplace.address
-= "#{@workplace.city + ', ' + @workplace.state}"
-%br
-%br
+.col-md-12.text-center
+  %h1
+    = @workplace.name
+  %p
+    = @workplace.address
+    = "#{@workplace.city + ', ' + @workplace.state}"
+  %br
+  %br
 
-- if @user.role == 'moderator'
-  = @
+.col-md-12.text-center
+  - if @user.pending?
+    %h2 Your request to join has been submitted. You will receive an email once a co-worker approves you.
+    
+  - if current_user.moderator?
+    %h2 Approve New Co-Workers
+    - @pending_users.each do |pending|
+      = pending.email
+      = link_to "Approve" # add approve / deny action here
   
