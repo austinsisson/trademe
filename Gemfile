@@ -24,6 +24,7 @@ gem 'uglifier'
 group :development do
   gem 'better_errors'
   gem 'html2haml'
+  gem 'pry-rails'
   gem 'spring'
 end
 

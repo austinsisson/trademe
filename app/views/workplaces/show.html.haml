@@ -8,7 +8,7 @@
   %br
 
 .col-md-12.text-center
-  - if @user.pending?
+  - if @pending_users.include?(current_user)
     %h2 Your request to join has been submitted. You will receive an email once a co-worker approves you.
     
   - if current_user.moderator?

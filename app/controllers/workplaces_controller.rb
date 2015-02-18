@@ -8,8 +8,7 @@ class WorkplacesController < ApplicationController
   
   def show
     @workplace = Workplace.find(params[:id])
-    @user = current_user.user_workplaces.where(workplace: @workplace).first
-    @pending_users = UserWorkplace.where(workplace: @workplace, pending: true)
+    @pending_users = User.find(UserWorkplace.where(workplace: @workplace, pending: true).pluck(:user_id))
   end
   
   def new

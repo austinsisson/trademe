@@ -36,8 +36,8 @@ describe 'join workplace' do
       fill_in 'City', with: 'Indianapolis'
       select 'Indiana', from: 'State'
       click_on 'Add this workplace'
-      
-      expect(@user.role).to eq 'moderator'
+
+      expect(@user.moderator?).to be_true
       expect(page).to have_content "Approve New Co-Workers"
     end
   end

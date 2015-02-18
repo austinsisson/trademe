@@ -10,7 +10,7 @@
   - if @user_workplaces.any?
     %h2 My Workplaces
     - @user_workplaces.each do |workplace|
-      = link_to "#{workplace.name}", workplace_path(workplace), class: 'btn btn-primary'
+      = link_to workplace.name, workplace_path(workplace), class: 'btn btn-primary'
     %br
     %h2 My Trade Requests
     %br
