@@ -3,17 +3,10 @@ class User < ActiveRecord::Base
   :recoverable, :rememberable, :trackable, :validatable, :confirmable,
   :omniauthable, omniauth_providers: [:facebook]
   
-  has_many :user_workplaces
+  has_many :user_workplaces, dependent: :destroy
   has_many :workplaces, through: :user_workplaces
   has_many :shifts, through: :workplaces
   
-  def moderator?
-    role == 'moderator'
-  end
-  
-  def regular?
-    role == 'regular'
-  end
   
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.id).first_or_create do |user|

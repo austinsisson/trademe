@@ -11,9 +11,14 @@
   - if @pending_users.include?(current_user)
     %h2 Your request to join has been submitted. You will receive an email once a co-worker approves you.
     
-  - if current_user.moderator?
+  - if @user.moderator?
     %h2 Approve New Co-Workers
     - @pending_users.each do |pending|
+      = pending.name
+      %br
       = pending.email
-      = link_to "Approve" # add approve / deny action here
+      %br
+      - pending.user_workplaces.where(workplace: @workplace).each do |pending_id|
+        = link_to "Approve", user_workplace_path(pending_id, user_workplace: { pending: false }), method: :put
+        = link_to "Deny", user_workplace_path(pending_id), method: :delete
   
