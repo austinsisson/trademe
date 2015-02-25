@@ -27,14 +27,20 @@ class UserWorkplacesController < ApplicationController
   end
   
   def destroy
-    @workplace = UserWorkplace.find(params[:id]).workplace_id
+    user_id = UserWorkplace.find(params[:id]).user_id
+    @user = User.find(user_id)
+    
+    @workplace_id = UserWorkplace.find(params[:id]).workplace_id
+    @workplace = Workplace.find(@workplace_id)
+    
     @user_workplace = UserWorkplace.find(params[:id])
 
     if @user_workplace.destroy!
-      redirect_to workplace_path(@workplace)
-      flash[:notice] = "Co-Worker was denied access"
+      UserWorkplaceMailer.join_rejected(@user, @workplace).deliver
+      redirect_to workplace_path(@workplace_id)
+      flash[:notice] = "Co-worker was denied access and has been notified."
     else
-      redirect_to workplace_path(@workplace)
+      redirect_to workplace_path(@workplace_id)
       flash[:error] = 'An error occurred, please try again!'
     end
   end
