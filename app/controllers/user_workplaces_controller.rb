@@ -9,7 +9,7 @@ class UserWorkplacesController < ApplicationController
     @moderator = User.find(moderator_id)
     
     if @user_workplace.save
-      UserMailer.join_requested(@moderator, @user, @workplace)
+      UserWorkplaceMailer.join_requested(@moderator, @user, @workplace)
       redirect_to workplace_path(@workplace)
       flash[:notice] = "Your request to join #{@workplace.name} has been submitted."
     else
