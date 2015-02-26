@@ -2,7 +2,7 @@ class UserWorkplaceMailer < ApplicationMailer
   
   def join_requested(moderator, user, workplace)
     @moderator = moderator
-    @user = user.name
+    @user = user
     @workplace = workplace
     mail(to: @moderator.email, subject: 'New Co-Worker Request')
   end
