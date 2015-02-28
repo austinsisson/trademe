@@ -8,21 +8,18 @@
     = stylesheet_link_tag    'application', "http://fonts.googleapis.com/css?family=Lato:300,400,900"
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
-    
   %body
-  
-    .flash
-      - if flash[:notice]
-        .alert.alert-success
-          = flash[:notice]
-      - elsif flash[:error]
-        .alert.alert-danger
-          = flash[:error]
-      - elsif flash[:alert]
-        .alert.alert-warning
-          = flash[:alert]
-        
     .navbar.navbar-default.navbar-fixed-top
+      .flash
+        - if flash[:notice]
+          .alert.alert-success
+            = flash[:notice]
+        - elsif flash[:error]
+          .alert.alert-danger
+            = flash[:error]
+        - elsif flash[:alert]
+          .alert.alert-warning
+            = flash[:alert]
       .container
         .navbar-header
           %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
@@ -42,5 +39,4 @@
                 = link_to 'About', '/#about'
               %li
                 = link_to 'Already registered?', sign_in_path
-
     = yield
