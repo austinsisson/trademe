@@ -1,3 +1,3 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "Notifications@trademe.io"
+  default from: "notifications@trademe.io"
 end
