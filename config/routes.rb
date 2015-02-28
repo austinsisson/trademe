@@ -7,6 +7,11 @@ Rails.application.routes.draw do
   
   post 'workplaces' => 'workplaces#create'
   
+  as :user do
+    get '/sign_in' => 'devise/sessions#new'
+    get '/sign_up' => 'devise/registrations#new'
+  end
+  
   authenticated :user do
     root to: 'users#show', as: 'authenticated_root'
   end
