@@ -5,11 +5,11 @@ class UserWorkplacesController < ApplicationController
     @user_workplace = UserWorkplace.create(user: current_user, workplace: @workplace, pending: true, role: 'regular')
 
     @user = current_user
-    moderator_id = UserWorkplace.where(workplace: @workplace, role: 'moderator').first.user_id
-    @moderator = User.find(moderator_id)
+    moderators = UserWorkplace.where(workplace: @workplace, role: 'moderator').pluck(:user_id)
+    @moderators = User.find(moderators)
     
     if @user_workplace.save
-      UserWorkplaceMailer.join_requested(@moderator, @user, @workplace).deliver
+      UserWorkplaceMailer.join_requested(@moderators, @user, @workplace).deliver
       redirect_to workplace_path(@workplace)
       flash[:notice] = "Your request to join #{@workplace.name} has been submitted."
     else

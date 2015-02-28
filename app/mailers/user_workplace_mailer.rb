@@ -1,10 +1,10 @@
 class UserWorkplaceMailer < ApplicationMailer
   
-  def join_requested(moderator, user, workplace)
-    @moderator = moderator
+  def join_requested(moderators, user, workplace)
+    @moderators = moderators.map(&:email)
     @user = user
     @workplace = workplace
-    mail(to: @moderator.email, subject: 'New Co-Worker Request')
+    mail(to: @moderators, subject: 'New Co-Worker Request')
   end
   
   def join_rejected(user, workplace)
