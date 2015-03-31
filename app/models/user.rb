@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   
   has_many :user_workplaces, dependent: :destroy
   has_many :workplaces, through: :user_workplaces
-  has_many :shifts, through: :workplaces
+  has_many :shifts
     
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.id).first_or_create do |user|
