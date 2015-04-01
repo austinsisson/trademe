@@ -10,6 +10,7 @@ class WorkplacesController < ApplicationController
     @workplace = Workplace.find(params[:id])
     @user = current_user.user_workplaces.where(workplace: @workplace).first
     @pending_users = User.find(UserWorkplace.where(workplace: @workplace, pending: true).pluck(:user_id))
+    @shifts = Shift.where(workplace_id: @workplace)
   end
   
   def new
