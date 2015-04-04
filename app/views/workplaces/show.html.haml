@@ -11,8 +11,13 @@
   %h2 Available Shifts
   - @shifts.each do |shift|
     = shift.name
+    = shift.date
+    = shift.start
+    = shift.finish
+    = shift.user_name
+    %br
   %h3 No shifts available?
-  = link_to "Post new shift!", new_shift_path, class: 'btn btn-primary'
+  = link_to "Post new shift!", new_workplace_shift_path(@workplace), class: 'btn btn-primary'
 
 .col-md-12.text-center
   - if @pending_users.include?(current_user)

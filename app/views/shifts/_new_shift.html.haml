@@ -1,20 +1,20 @@
-= form_for @shift do |f|
+= form_for [@workplace, @shift] do |f|
   .field
-    = f.label "Department / Area / Zone"
+    = f.label "Shift"
     %br
     = f.text_field :name
   .field
     = f.label :date
     %br
-    = f.text_field :date
+    = f.date_select "date", order: [:month, :day]
   .field
     = f.label :start
     %br
-    = f.text_field :start
+    = f.time_select "start", ampm: true, minute_step: 15
   .field
     = f.label :finish
     %br
-    = select_hour(1)
+    = f.time_select "finish", ampm: true, minute_step: 15
   .field
     %br
-    = f.submit "Post Shift Request", class: 'btn btn-primary'
+    = f.submit "Post Shift Request", class: 'btn btn-primary', method: :post
