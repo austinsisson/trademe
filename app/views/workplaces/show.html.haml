@@ -8,16 +8,33 @@
   %br
 
 .col-md-12.text-center
+  - if @shifts.any?
+    = link_to "Post new shift!", new_workplace_shift_path(@workplace), class: 'btn btn-primary'
   %h2 Available Shifts
   - @shifts.each do |shift|
-    = shift.name
-    = shift.date
-    = shift.start
-    = shift.finish
-    = shift.user_name
+    .btn-group{role: "group"}
+      .btn.btn-default
+        %p
+          = "#{shift.user_name}'s"
+          %br
+          = shift.name
+          shift
+          %br
+          = shift.date.strftime("%A, %m/%d/%Y")
+          %br
+          = shift.start.strftime("%l:%M %p")
+          to
+          = shift.finish.strftime("%l:%M %p")
     %br
-  %h3 No shifts available?
-  = link_to "Post new shift!", new_workplace_shift_path(@workplace), class: 'btn btn-primary'
+    %br
+      .btn.btn-success
+        Accept!
+      .btn.btn-primary
+        Ask to Trade!
+    %br
+  - if @shifts.none?
+    %h3 No shifts available?
+    = link_to "Post new shift!", new_workplace_shift_path(@workplace), class: 'btn btn-primary'
 
 .col-md-12.text-center
   - if @pending_users.include?(current_user)

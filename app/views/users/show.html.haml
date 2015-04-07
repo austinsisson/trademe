@@ -13,5 +13,17 @@
       = link_to workplace.name, workplace_path(workplace.workplace_id), class: 'btn btn-primary'
     %br
     %h2 My Trade Requests
+    - @user_shifts.each do |shift|
+      .btn-group{role: "group"}
+      .btn.btn-default
+        %p
+          = shift.name
+          shift
+          %br
+          = shift.date.strftime("%A, %m/%d/%Y")
+          %br
+          = shift.start.strftime("%l:%M %p")
+          to
+          = shift.finish.strftime("%l:%M %p")
     %br
     %h2 My Accepted Shifts
