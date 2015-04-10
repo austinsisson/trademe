@@ -19,6 +19,15 @@ class ShiftsController < ApplicationController
   end
   
   def update
+    @shift = Shift.find(params[:id])
+    @workpalce = Workplace.find(params[:workplace_id])
+    
+    if @shift.update(shift_params)
+      redirect_to workplace_path(@workplace)
+      flash[:notice] = "Shift accepted"
+    else
+      flash[:error] = "Oops! An error occurred, please try again!"
+    end
   end
   
   def destroy
@@ -27,6 +36,6 @@ class ShiftsController < ApplicationController
   private
   
   def shift_params
-    params.require(:shift).permit(:name, :date, :start, :finish, :workplace_id, :user_name)
+    params.require(:shift).permit(:name, :date, :start, :finish, :workplace_id, :user_name, :accepted)
   end
 end
