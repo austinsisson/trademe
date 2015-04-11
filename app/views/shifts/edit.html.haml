@@ -1,0 +1,36 @@
+.col-md-12.text-center
+  %h2 Ok, you want to take this shift:
+  %br
+  .btn-group{role: "group"}
+    .btn.btn-primary.disabled
+      %p
+        = "#{@shift.user_name}'s"
+        %br
+        = @shift.name
+        shift
+        %br
+        = @shift.date.strftime("%A, %m/%d/%Y")
+        %br
+        = @shift.start.strftime("%l:%M %p")
+        to
+        = @shift.finish.strftime("%l:%M %p")
+  %br
+  %h2 Which of your shifts would you like to trade?
+  %br
+  - @available_shifts.each do |shift|
+    .btn-group{role: "group"}
+      .btn.btn-primary.disabled
+        %p
+          = shift.name
+          shift
+          %br
+          = shift.date.strftime("%A, %m/%d/%Y")
+          %br
+          = shift.start.strftime("%l:%M %p")
+          to
+          = shift.finish.strftime("%l:%M %p")
+    %br      
+    %br
+    = link_to "Select Shift", workplace_shift_path(@workplace, @shift, shift: {coworker_shift: shift}), method: :patch, data: {confirm: "Are you sure you want to trade this shift?"}
+    %br
+    %br

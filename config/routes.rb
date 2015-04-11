@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :update]
   
   resources :workplaces do
-    resources :shifts, except: [:show, :edit]
+    resources :shifts, except: [:show]
   end
   resources :user_workplaces, only: [:create, :update, :destroy]
   

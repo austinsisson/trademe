@@ -1,0 +1,8 @@
+.col-md-12.text-center
+  %h2
+    = "Good news, #{@user.name}! #{@coworker.name} has accepted your #{@shift.name} shift on #{@shift.date.strftime("%A, %m/%d/%Y")}!"
+  %br
+  %p
+    Please 
+    %a{href: "www.trademe.io/sign_in"} sign-in
+    to confirm.

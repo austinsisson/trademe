@@ -27,15 +27,15 @@
       %br
       %br
       - unless shift.user_name == current_user.name
-        = link_to "Accept", workplace_shift_path(@workplace, shift, shift: {user_name: current_user.name, accepted: true}), method: :patch, class: 'btn btn-success',  data: {confirm: "Are you sure you want to accept this shift?"}
-        = link_to "Ask to Trade!", class: 'btn btn-info'
+        = link_to "Accept Shift", workplace_shift_path(@workplace, shift, shift: {user_name: current_user.name, accepted: true, date: shift.date, name: shift.name}), method: :patch, class: 'btn btn-success',  data: {confirm: "Are you sure you want to accept this shift?"}
+        = link_to "Ask to Trade", edit_workplace_shift_path(@workplace, shift), class: 'btn btn-info'
         %br
       %br
     - if @shifts.any?
-      = link_to "Post new shift!", new_workplace_shift_path(@workplace), class: 'btn btn-primary'
+      = link_to "Post new shift", new_workplace_shift_path(@workplace), class: 'btn btn-primary'
     - if @shifts.none?
       %h3 No shifts available?
-      = link_to "Post new shift!", new_workplace_shift_path(@workplace), class: 'btn btn-primary'
+      = link_to "Post new shift", new_workplace_shift_path(@workplace), class: 'btn btn-primary'
 
 .col-md-12.text-center
   - if @pending_users.include?(current_user)

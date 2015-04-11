@@ -20,32 +20,32 @@
     %br
     - @available_shifts.each do |shift|
       .btn-group{role: "group"}
-      .btn.btn-default
-        %p
-          = Workplace.find(shift.workplace_id).name
-          %br
-          = shift.name
-          shift
-          %br
-          = shift.date.strftime("%A, %m/%d/%Y")
-          %br
-          = shift.start.strftime("%l:%M %p")
-          to
-          = shift.finish.strftime("%l:%M %p")
+        .btn.btn-default
+          %p
+            = Workplace.find(shift.workplace_id).name
+            %br
+            = shift.name
+            shift
+            %br
+            = shift.date.strftime("%A, %m/%d/%Y")
+            %br
+            = shift.start.strftime("%l:%M %p")
+            to
+            = shift.finish.strftime("%l:%M %p")
     %br
     %h2 My Accepted Shifts
     %br
     - @accepted_shifts.each do |shift|
       .btn-group{role: "group"}
-      .btn.btn-default
-        %p
-          = Workplace.find(shift.workplace_id).name
-          %br
-          = shift.name
-          shift
-          %br
-          = shift.date.strftime("%A, %m/%d/%Y")
-          %br
-          = shift.start.strftime("%l:%M %p")
-          to
-          = shift.finish.strftime("%l:%M %p")
+        .btn.btn-default
+          %p
+            = Workplace.find(shift.workplace_id).name
+            %br
+            = shift.name
+            shift
+            %br
+            = shift.date.strftime("%A, %m/%d/%Y")
+            %br
+            = shift.start.strftime("%l:%M %p")
+            to
+            = shift.finish.strftime("%l:%M %p")

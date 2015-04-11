@@ -18,16 +18,32 @@ class ShiftsController < ApplicationController
     end
   end
   
+  def edit
+    @shift = Shift.find(params[:id])
+    @workplace = Workplace.find(params[:workplace_id])
+    @available_shifts = Shift.where(workplace_id: @workplace, user_name: current_user.name, accepted: false)
+
+    @user = User.find_by_name(@shift.user_name)
+    @coworker = current_user
+    @user_shift = @shift
+    
+  end
+  
   def update
     @shift = Shift.find(params[:id])
-    @workpalce = Workplace.find(params[:workplace_id])
+    @workplace = Workplace.find(params[:workplace_id])
+    @user = User.find_by_name(@shift.user_name)
+
     
     if @shift.update(shift_params)
+      @coworker = User.find_by_name(@shift.user_name)
+      ShiftMailer.shift_accepted(@user, @coworker, @shift).deliver
       redirect_to workplace_path(@workplace)
       flash[:notice] = "Shift accepted"
     else
       flash[:error] = "Oops! An error occurred, please try again!"
     end
+   
   end
   
   def destroy

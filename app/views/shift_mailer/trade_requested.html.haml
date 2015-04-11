@@ -1,0 +1,8 @@
+%h2
+  = "Greetings! #{@coworker.name} would like to trade shifts!"
+%p
+  = "Will you take #{@coworker.name}'s #{@coworker_shift.name} shift on #{@coworker_shift.date.strftime("%A, %m/%d/%Y")} in exchange for your #{@user_shift.name} shift on #{@user_shift.date.strftime("%A, %m/%d/%Y")}?"
+  %br
+  Please 
+  %a{href: "www.trademe.io/sign_in"} sign-in
+  to accept or deny this request.
