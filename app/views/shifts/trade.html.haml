@@ -4,16 +4,16 @@
   .btn-group{role: "group"}
     .btn.btn-primary.disabled
       %p
-        = "#{@shift.user_name}'s"
+        = "#{@coworker_shift.user_name}'s"
         %br
-        = @shift.name
+        = @coworker_shift.name
         shift
         %br
-        = @shift.date.strftime("%A, %m/%d/%Y")
+        = @coworker_shift.date.strftime("%A, %m/%d/%Y")
         %br
-        = @shift.start.strftime("%l:%M %p")
+        = @coworker_shift.start.strftime("%l:%M %p")
         to
-        = @shift.finish.strftime("%l:%M %p")
+        = @coworker_shift.finish.strftime("%l:%M %p")
   %br
   %h2 Which of your shifts would you like to trade?
   %br
@@ -31,6 +31,6 @@
           = shift.finish.strftime("%l:%M %p")
     %br      
     %br
-    = link_to "Select Shift", workplace_shift_path(@workplace, @shift, shift: {coworker_shift: shift}), method: :patch, data: {confirm: "Are you sure you want to trade this shift?"}
+    = link_to "Select Shift", trade_workplace_shift_path, {controller: 'shifts', action: 'trade_request', user_shift: shift}, method: :post, data: {confirm: "Are you sure you want to ask to trade this shift?"}
     %br
     %br

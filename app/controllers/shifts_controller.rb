@@ -18,15 +18,17 @@ class ShiftsController < ApplicationController
     end
   end
   
-  def edit
-    @shift = Shift.find(params[:id])
+  def trade
+    @coworker_shift = Shift.find(params[:id])
     @workplace = Workplace.find(params[:workplace_id])
     @available_shifts = Shift.where(workplace_id: @workplace, user_name: current_user.name, accepted: false)
 
-    @user = User.find_by_name(@shift.user_name)
-    @coworker = current_user
-    @user_shift = @shift
-    
+    @coworker = User.find_by_name(@coworker_shift.user_name)
+    @user = current_user
+  end  
+  
+  def trade_request
+    RequestTrade.call(params)
   end
   
   def update

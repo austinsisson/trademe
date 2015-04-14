@@ -28,7 +28,7 @@
       %br
       - unless shift.user_name == current_user.name
         = link_to "Accept Shift", workplace_shift_path(@workplace, shift, shift: {user_name: current_user.name, accepted: true, date: shift.date, name: shift.name}), method: :patch, class: 'btn btn-success',  data: {confirm: "Are you sure you want to accept this shift?"}
-        = link_to "Ask to Trade", edit_workplace_shift_path(@workplace, shift), class: 'btn btn-info'
+        = link_to "Ask to Trade", trade_workplace_shift_path(@workplace, shift), class: 'btn btn-info'
         %br
       %br
     - if @shifts.any?

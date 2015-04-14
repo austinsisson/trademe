@@ -4,7 +4,12 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :update]
   
   resources :workplaces do
-    resources :shifts, except: [:show]
+    resources :shifts, except: [:show, :edit] do
+      member do
+        get 'trade'
+        post 'trade_request'
+      end
+    end
   end
   resources :user_workplaces, only: [:create, :update, :destroy]
   
