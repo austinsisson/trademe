@@ -31,6 +31,6 @@
           = shift.finish.strftime("%l:%M %p")
     %br      
     %br
-    = link_to "Select Shift", trade_workplace_shift_path, {controller: 'shifts', action: 'trade_request', user_shift: shift}, method: :post, data: {confirm: "Are you sure you want to ask to trade this shift?"}
+    = link_to "Select Shift", {controller: 'shifts', action: 'trade_request', user: @user, user_shift: shift, coworker_shift: @coworker_shift, coworker: @coworker}, method: :post, data: {confirm: "Are you sure you want to ask to trade this shift?"}
     %br
     %br

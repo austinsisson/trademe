@@ -28,7 +28,21 @@ class ShiftsController < ApplicationController
   end  
   
   def trade_request
-    RequestTrade.call(params)
+    @user = User.find(params[:user])
+    @coworker = User.find(params[:coworker])
+    @user_shift = Shift.find(params[:user_shift])
+    @coworker_shift = Shift.find(params[:coworker_shift])
+    
+    ShiftMailer.trade_requested(@user, @coworker, @user_shift, @coworker_shift).deliver
+    
+    if ShiftMailer.trade_requested
+      
+      redirect_to user_path
+      flash[:notice] = "#{@coworker.name} has been notified of your shift trade request!"
+    else
+      redirect_to trade_workplace_shift_path(@coworker_shift)
+      flash[:error] = "Oops! An error occurred, please try again!"
+    end
   end
   
   def update
@@ -45,7 +59,6 @@ class ShiftsController < ApplicationController
     else
       flash[:error] = "Oops! An error occurred, please try again!"
     end
-   
   end
   
   def destroy

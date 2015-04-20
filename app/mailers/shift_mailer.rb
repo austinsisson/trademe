@@ -8,16 +8,16 @@ class ShiftMailer < ApplicationMailer
   end
   
   def trade_requested(user, coworker, user_shift, coworker_shift)
-    @user = user
-    @coworker = coworker
-    @user_shift = user_shift
-    @coworker_shift = coworker_shift
+    @coworker = user
+    @user = coworker
+    @coworker_shift = user_shift
+    @user_shift = coworker_shift
     mail(to: @user.email, subject: "Shift Trade Requested!")
   end
   
-  def trade_accepted
+  def trade_accepted(user, coworker)
   end
   
-  def trade_denied
+  def trade_denied(user, coworker)
   end
 end

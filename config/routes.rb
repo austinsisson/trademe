@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {omniauth_callbacks: 'users/omniauth_callbacks'}
   
-  resources :users, only: [:show, :update]
+  resources :users, only: [:show, :update] do
+    resources :requests, only: [:create, :update, :destroy]
+  end
   
   resources :workplaces do
     resources :shifts, except: [:show, :edit] do
