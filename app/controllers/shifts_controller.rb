@@ -37,8 +37,7 @@ class ShiftsController < ApplicationController
     
     if ShiftMailer.trade_requested
       
-      redirect_to user_path
-      flash[:notice] = "#{@coworker.name} has been notified of your shift trade request!"
+      redirect_to user_requests_path(@user, user: @user, coworker_id: @coworker, user_shift: @user_shift, coworker_shift: @coworker_shift)
     else
       redirect_to trade_workplace_shift_path(@coworker_shift)
       flash[:error] = "Oops! An error occurred, please try again!"
