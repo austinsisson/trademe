@@ -33,6 +33,7 @@
             to
             = shift.finish.strftime("%l:%M %p")
     %br
+    %br
     %h2 My Accepted Shifts
     %br
     - @accepted_shifts.each do |shift|
@@ -49,3 +50,47 @@
             = shift.start.strftime("%l:%M %p")
             to
             = shift.finish.strftime("%l:%M %p")
+    %br
+    %br
+    - if @user_requests.any? || @coworker_requests.any?
+      %h2 My Shift Trade Requests
+      - @user_requests.each do |shift|
+        %h4
+          Your request to trade your
+          = Shift.find(shift.user_shift).name
+          shift on
+          %br
+          = Shift.find(shift.user_shift).date.strftime("%A, %m/%d/%Y")
+          %br
+          is still pending approval from
+          = User.find(shift.coworker_id).name
+          %br
+          %br
+      - @coworker_requests.each do |shift|
+        %h4
+          = User.find(shift.user_id).name
+          would like to trade 
+          %br
+          their
+          = Shift.find(shift.user_shift).name
+          shift
+          %br
+          = Shift.find(shift.user_shift).date.strftime("%A, %m/%d/%Y")
+          %br
+          = Shift.find(shift.user_shift).start.strftime("%l:%M %p")
+          to
+          = Shift.find(shift.user_shift).finish.strftime("%l:%M %p")
+          %br
+          for your
+          = Shift.find(shift.coworker_shift).name
+          shift
+          %br
+          = Shift.find(shift.coworker_shift).date.strftime("%A, %m/%d/%Y")
+          %br
+          = Shift.find(shift.coworker_shift).start.strftime("%l:%M %p")
+          to
+          = Shift.find(shift.coworker_shift).finish.strftime("%l:%M %p")
+          %br
+          = link_to "Accept", class: 'btn btn-primary'
+          = link_to "Deny", class: 'btn btn-warning'
+          %br
