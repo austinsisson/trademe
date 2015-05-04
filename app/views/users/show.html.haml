@@ -91,6 +91,6 @@
           to
           = Shift.find(shift.coworker_shift).finish.strftime("%l:%M %p")
           %br
-          = link_to "Accept", class: 'btn btn-primary'
+          = link_to "Accept", user_request_path(@user, shift), class: 'btn btn-primary', method: :patch
           = link_to "Deny", class: 'btn btn-warning'
           %br

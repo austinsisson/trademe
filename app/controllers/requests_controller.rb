@@ -19,6 +19,30 @@ class RequestsController < ApplicationController
     end
   end
   
+  def update
+    @request = Request.find(params[:id])
+    @user_shift = Shift.find(@request.user_shift)
+    @coworker_shift = Shift.find(@request.coworker_shift)
+    @user_name = @user_shift.user_name
+    @coworker_name = @coworker_shift.user_name
+    
+    @coworker = User.find_by_name(@user_name)
+    @user = current_user
+
+    @user_shift.update(user_name: @coworker_name, accepted: true)
+    @coworker_shift.update(user_name: @user_name, accepted: true)
+    
+    if @user_shift.save && @coworker_shift.save
+      @request.destroy
+      ShiftMailer.trade_accepted(@user, @coworker).deliver
+      redirect_to user_path(current_user)
+      flash[:notice] = "Shifts traded!"
+    else
+      redirect_to user_path(current_user)
+      flash[:error] = "Oops! An error occurred, please try again!"
+    end
+  end
+  
   private
   
   def request_params
