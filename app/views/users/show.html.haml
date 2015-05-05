@@ -16,6 +16,54 @@
     %br
     = link_to "Find another workplace", workplaces_path, class: 'btn btn-info'
     %br
+    - if @user_requests.any? || @coworker_requests.any?
+      %h2 My Shift Trade Requests
+      - @user_requests.each do |shift|
+        %h4
+          Your request to trade your
+          %br
+          = Shift.find(shift.user_shift).name
+          shift on
+          %br
+          = Shift.find(shift.user_shift).date.strftime("%A, %m/%d/%Y")
+          %br
+          is still pending approval.
+          %br
+          %br
+          You will be notified by email when it has been approved or rejected.
+          %br
+      - @coworker_requests.each do |shift|
+        %h4
+          = User.find(shift.user_id).name
+          wants to trade their
+          %br
+          %br
+          = Shift.find(shift.user_shift).name
+          shift
+          %br
+          = Shift.find(shift.user_shift).date.strftime("%A, %m/%d/%Y")
+          %br
+          = Shift.find(shift.user_shift).start.strftime("%l:%M %p")
+          to
+          = Shift.find(shift.user_shift).finish.strftime("%l:%M %p")
+          %br
+          %br
+          for your
+          %br
+          %br
+          = Shift.find(shift.coworker_shift).name
+          shift
+          %br
+          = Shift.find(shift.coworker_shift).date.strftime("%A, %m/%d/%Y")
+          %br
+          = Shift.find(shift.coworker_shift).start.strftime("%l:%M %p")
+          to
+          = Shift.find(shift.coworker_shift).finish.strftime("%l:%M %p")
+          %br
+          %br
+          = link_to "Accept", user_request_path(@user, shift), class: 'btn btn-primary', method: :patch
+          = link_to "Deny", user_request_path(@user, shift), class: 'btn btn-warning', method: :delete
+          %br
     %h2 My Available Shifts
     %br
     - @available_shifts.each do |shift|
@@ -52,45 +100,4 @@
             = shift.finish.strftime("%l:%M %p")
     %br
     %br
-    - if @user_requests.any? || @coworker_requests.any?
-      %h2 My Shift Trade Requests
-      - @user_requests.each do |shift|
-        %h4
-          Your request to trade your
-          = Shift.find(shift.user_shift).name
-          shift on
-          %br
-          = Shift.find(shift.user_shift).date.strftime("%A, %m/%d/%Y")
-          %br
-          is still pending approval from
-          = User.find(shift.coworker_id).name
-          %br
-          %br
-      - @coworker_requests.each do |shift|
-        %h4
-          = User.find(shift.user_id).name
-          would like to trade 
-          %br
-          their
-          = Shift.find(shift.user_shift).name
-          shift
-          %br
-          = Shift.find(shift.user_shift).date.strftime("%A, %m/%d/%Y")
-          %br
-          = Shift.find(shift.user_shift).start.strftime("%l:%M %p")
-          to
-          = Shift.find(shift.user_shift).finish.strftime("%l:%M %p")
-          %br
-          for your
-          = Shift.find(shift.coworker_shift).name
-          shift
-          %br
-          = Shift.find(shift.coworker_shift).date.strftime("%A, %m/%d/%Y")
-          %br
-          = Shift.find(shift.coworker_shift).start.strftime("%l:%M %p")
-          to
-          = Shift.find(shift.coworker_shift).finish.strftime("%l:%M %p")
-          %br
-          = link_to "Accept", user_request_path(@user, shift), class: 'btn btn-primary', method: :patch
-          = link_to "Deny", class: 'btn btn-warning'
-          %br
+    

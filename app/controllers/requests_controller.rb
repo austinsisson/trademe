@@ -43,6 +43,22 @@ class RequestsController < ApplicationController
     end
   end
   
+  def destroy
+    @request = Request.find(params[:id])
+    @user = current_user
+    @coworker_shift = Shift.find(@request.user_shift)
+    @coworker = User.find_by_name(@coworker_shift.user_name)
+    
+    if @request.destroy
+      ShiftMailer.trade_rejected(@user, @coworker).deliver
+      redirect_to user_path(current_user)
+      flash[:notice] = "Trade rejected!"
+    else
+      redirect_to user_path(current_user)
+      flash[:error] = "Oops! An error occurred, please try again!"
+    end
+  end
+  
   private
   
   def request_params
