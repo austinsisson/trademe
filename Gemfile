@@ -7,6 +7,7 @@ gem 'bootstrap-sass'
 gem 'bootswatch-rails'
 gem 'coffee-rails'
 gem 'devise'
+gem 'faker'
 gem 'figaro'
 gem 'font-awesome-sass'
 gem 'haml-rails'
@@ -36,7 +37,6 @@ end
 
 group :test do
   gem 'database_cleaner'
-  gem 'faker'
 end
 
 group :test, :development do
