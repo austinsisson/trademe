@@ -61,6 +61,15 @@ class ShiftsController < ApplicationController
   end
   
   def destroy
+    @shift = Shift.find(params[:id])
+    
+    if @shift.destroy
+      redirect_to user_path(current_user)
+      flash[:notice] = "Shift deleted!"
+    else
+      redirect_to user_path(current_user)
+      flash[:error] = "Oops! An error occurred, please try again!"
+    end
   end
   
   private

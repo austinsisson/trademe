@@ -80,6 +80,8 @@
             = shift.start.strftime("%l:%M %p")
             to
             = shift.finish.strftime("%l:%M %p")
+            %br
+            = link_to "Delete", workplace_shift_path(Workplace.find(shift.workplace_id).name, shift), class: 'btn btn-danger', method: :delete
     %br
     %br
     %h2 My Accepted Shifts
@@ -98,6 +100,8 @@
             = shift.start.strftime("%l:%M %p")
             to
             = shift.finish.strftime("%l:%M %p")
+            %br
+            = link_to "Delete", workplace_shift_path(Workplace.find(shift.workplace_id).name, shift), class: 'btn btn-danger', method: :delete
     %br
     %br
     
