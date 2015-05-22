@@ -82,5 +82,5 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # Configure ActionMailer for production
-  config.action_mailer.default_url_options = { host: 'trademe.io' }
+  config.action_mailer.default_url_options = { host: 'www.trademe.io' }
 end
